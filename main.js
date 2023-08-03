@@ -8,7 +8,7 @@ function createGrid(size) {
         for (let j = 0; j < size; j++) {
             const div = document.createElement("div");
             div.setAttribute("class", "paint");
-            div.style.cssText = "display: flex; flex: 1; transition: all 0.7s ease;";
+            div.style.cssText = "display: flex; flex: 1; transition: all 0.5s ease;";
             rowContainer.appendChild(div);            
         }
     }
@@ -35,10 +35,14 @@ function removeAllChildNodes(parent) {
 function resize() {
     let newSize = prompt("Please enter the size you would like to change to.");
     
-    const grid = document.querySelector(".grid-container");
-    removeAllChildNodes(grid);
-    createGrid(newSize);
-
+    if (newSize > 100) {
+        alert("ERROR: The given size is too big!");
+    }
+    else {
+        const grid = document.querySelector(".grid-container");
+        removeAllChildNodes(grid);
+        createGrid(newSize);
+    }
 }
 
 
