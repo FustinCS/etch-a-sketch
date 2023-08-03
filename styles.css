@@ -8,3 +8,7 @@ body {
     justify-content: space-evenly;
     height: 100vh;
 }
+
+.hovered {
+    background-color: rgb(161, 250, 220);
+}
