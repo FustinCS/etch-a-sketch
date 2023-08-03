@@ -14,12 +14,6 @@ function createGrid() {
     }
 }
 
-function removeTransition(e) {
-    console.log(this);
-    if (e.propertyName !== 'background-color') return;
-    this.classList.remove("hovered");
-}
-
 function hovered(e) {
     this.classList.add("hovered");
 }
@@ -27,9 +21,7 @@ function hovered(e) {
 function onHover() {
     const surface = document.querySelectorAll(".paint");
 
-    surface.forEach((square) => square.addEventListener('transitionend', removeTransition));
     surface.forEach((square) => square.addEventListener('mouseover', hovered));
-    
 }
 
 createGrid();
