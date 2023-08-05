@@ -63,6 +63,7 @@ button {
     border-width: 2px;
     border-color: rgb(75, 75, 75);
     transition: all 0.05s linear;
+    cursor: pointer;
 }
 
 .resize-button:hover {
