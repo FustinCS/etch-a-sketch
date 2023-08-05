@@ -16,14 +16,31 @@ function createGrid(size) {
     onHover();
 }
 
-function hovered(e) {
-    this.classList.add("hovered");
+function regHover(e) {
+    this.style.backgroundColor = `rgb(75, 75, 75)`;
+}
+
+function rainbowHover(e) {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+
+    this.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
 }
 
 function onHover() {
     const surface = document.querySelectorAll(".paint");
-
-    surface.forEach((square) => square.addEventListener('mouseover', hovered));
+    const rainbow = document.querySelector(".rainbow-button");
+    
+    if (rainbow.classList.contains("active")) {
+        // need to remove in order to add it back later
+        surface.forEach((square) => square.removeEventListener('mouseover', regHover));
+        surface.forEach((square) => square.addEventListener('mouseover', rainbowHover));
+    }
+    else {
+        surface.forEach((square) => square.removeEventListener('mouseover', rainbowHover));
+        surface.forEach((square) => square.addEventListener('mouseover', regHover));
+    }
 }
 
 function removeAllChildNodes(parent) {
@@ -45,7 +62,13 @@ function resize() {
     }
 }
 
+function rainbow(e) {
+    this.classList.toggle('active');
+    onHover();
+}
 
 createGrid(16);
 const resizeBtn = document.querySelector(".resize-button");
 resizeBtn.addEventListener('click', resize);
+const rainbowBtn = document.querySelector(".rainbow-button");
+rainbowBtn.addEventListener('click', rainbow);
